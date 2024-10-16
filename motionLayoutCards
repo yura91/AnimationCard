@@ -1,0 +1,240 @@
+package net.pst.app.presentation
+
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
+import net.pst.app.databinding.FragmentStartIssueCardBinding
+import net.pst.app.presentation.viewmodels.IssueCardChooseTariffViewModel
+
+@AndroidEntryPoint
+class IssueCardChooseTariffFragment :
+    BaseFragment<FragmentStartIssueCardBinding>(FragmentStartIssueCardBinding::inflate) {
+    private val viewModel: IssueCardChooseTariffViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    handeBackButton()
+                }
+            })
+
+        binding?.ultimaLayout?.setOnClickListener {
+            if (binding?.ultimaLayout?.currentState == binding?.ultimaLayout?.startState) {
+                viewModel.title = binding?.ultimaTitle?.text.toString()
+                viewModel.subTitle = binding?.ultimaSubTitle?.text.toString()
+                startMotionAnimationToEnd(binding?.ultimaLayout)
+            }
+        }
+
+        binding?.advLayout?.setOnClickListener {
+            if (binding?.advLayout?.currentState == binding?.advLayout?.startState) {
+                viewModel.title = binding?.advTitle?.text.toString()
+                viewModel.subTitle = binding?.advSubTitle?.text.toString()
+                startMotionAnimationToEnd(binding?.advLayout)
+            }
+        }
+
+        binding?.facebookLayout?.setOnClickListener {
+            if (binding?.facebookLayout?.currentState == binding?.facebookLayout?.startState) {
+                viewModel.title = binding?.facebookTitle?.text.toString()
+                viewModel.subTitle = binding?.facebookSubTitle?.text.toString()
+                startMotionAnimationToEnd(binding?.facebookLayout)
+            }
+        }
+
+        binding?.googleLayout?.setOnClickListener {
+            if (binding?.googleLayout?.currentState == binding?.googleLayout?.startState) {
+                viewModel.title = binding?.googleTitle?.text.toString()
+                viewModel.subTitle = binding?.googleSubTitle?.text.toString()
+                startMotionAnimationToEnd(binding?.googleLayout)
+            }
+        }
+
+        binding?.tiktokLayout?.setOnClickListener {
+            if (binding?.tiktokLayout?.currentState == binding?.tiktokLayout?.startState) {
+                viewModel.title = binding?.tiktokTitle?.text.toString()
+                viewModel.subTitle = binding?.tiktokSubTitle?.text.toString()
+                startMotionAnimationToEnd(binding?.tiktokLayout)
+            }
+        }
+
+        binding?.backButton?.setOnClickListener {
+            handeBackButton()
+        }
+    }
+
+    private fun startMotionAnimationToEnd(layout: MotionLayout?) {
+        layout?.translationY = 0f
+        val targetTranslationY =
+            (binding?.ultimaLayout?.top?.toFloat() ?: 0f) - layout?.top?.toFloat()!!
+
+        viewModel.negativeTargetTranslationY = 0 - targetTranslationY
+
+        layout.transitionToEnd()
+
+        layout.animate()
+            ?.translationY(targetTranslationY)
+            ?.setDuration(SPEED)
+            ?.withEndAction {
+                animateViewsToZeroSize(layout)
+            }
+            ?.start()
+    }
+
+    private fun animateViewsToZeroSize(layout: MotionLayout?) {
+
+        binding?.bestCardTitle?.animate()
+            ?.alpha(0f)
+            ?.setDuration(SPEED)
+            ?.withEndAction {
+                binding?.bestCardTitle?.visibility = View.INVISIBLE
+            }
+            ?.start()
+
+        if (layout != binding?.ultimaLayout) {
+            hideLayout(binding?.ultimaLayout)
+        }
+
+        binding?.advCardsTitle?.animate()
+            ?.alpha(0f)
+            ?.setDuration(SPEED)
+            ?.withEndAction {
+                binding?.advCardsTitle?.visibility = View.GONE
+            }
+            ?.start()
+
+
+        if (layout != binding?.advLayout) {
+            hideLayout(binding?.advLayout)
+        }
+
+        if (layout != binding?.facebookLayout) {
+            hideLayout(binding?.facebookLayout)
+        }
+
+        if (layout != binding?.googleLayout) {
+            hideLayout(binding?.googleLayout)
+        }
+
+        if (layout != binding?.tiktokLayout) {
+            hideLayout(binding?.tiktokLayout)
+        }
+
+        binding?.bigTitle?.text = viewModel.title
+        binding?.bigSubTitle?.text = viewModel.subTitle
+        binding?.bigLayout?.alpha = 0f
+        binding?.bigLayout?.translationY = 0f
+        binding?.bigLayout?.isVisible = true
+        binding?.bigLayout?.animate()
+            ?.setStartDelay(SPEED)
+            ?.withStartAction {
+                layout?.translationY = 0f
+            }
+            ?.alpha(1f)
+            ?.setDuration(SPEED)
+    }
+
+    private fun showTitlesAndCards(layout: MotionLayout?) {
+
+        binding?.bestCardTitle?.visibility = View.VISIBLE
+        binding?.bestCardTitle?.alpha = 0f
+        binding?.bestCardTitle?.animate()
+            ?.alpha(1f)
+            ?.setDuration(SPEED)
+            ?.start()
+
+        if (layout != binding?.ultimaLayout) {
+            showLayout(binding?.ultimaLayout)
+        }
+
+        binding?.advCardsTitle?.visibility = View.VISIBLE
+        binding?.advCardsTitle?.alpha = 0f
+        binding?.advCardsTitle?.animate()
+            ?.alpha(1f)
+            ?.setDuration(SPEED)
+            ?.start()
+
+        if (layout != binding?.advLayout) {
+            showLayout(binding?.advLayout)
+        }
+
+        if (layout != binding?.facebookLayout) {
+            showLayout(binding?.facebookLayout)
+        }
+
+        if (layout != binding?.googleLayout) {
+            showLayout(binding?.googleLayout)
+        }
+
+        if (layout != binding?.tiktokLayout) {
+            showLayout(binding?.tiktokLayout)
+        }
+    }
+
+    private fun returnCardToItsPlace(layout: MotionLayout?) {
+        val targetTranslationY = viewModel.negativeTargetTranslationY
+
+        layout?.transitionToStart()
+        layout?.animate()
+            ?.translationY(targetTranslationY)
+            ?.setDuration(SPEED)
+            ?.withEndAction {
+                showTitlesAndCards(layout)
+                layout.translationY = 0f
+            }
+            ?.start()
+    }
+
+    private fun handeBackButton() {
+
+        binding?.bigLayout?.isVisible = false
+        // tut ubrat details tozhe (kogda dobavim ih)
+
+        if (binding?.ultimaLayout?.currentState == binding?.ultimaLayout?.endState) {
+            returnCardToItsPlace(binding?.ultimaLayout)
+        } else if (binding?.advLayout?.currentState == binding?.advLayout?.endState) {
+            returnCardToItsPlace(binding?.advLayout)
+        } else if (binding?.facebookLayout?.currentState == binding?.facebookLayout?.endState) {
+            returnCardToItsPlace(binding?.facebookLayout)
+        } else if (binding?.googleLayout?.currentState == binding?.googleLayout?.endState) {
+            returnCardToItsPlace(binding?.googleLayout)
+        } else if (binding?.tiktokLayout?.currentState == binding?.tiktokLayout?.endState) {
+            returnCardToItsPlace(binding?.tiktokLayout)
+        } else {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+    }
+
+    private fun showLayout(layout: MotionLayout?) {
+        layout?.visibility = View.VISIBLE
+        layout?.alpha = 0f
+        layout?.animate()
+            ?.alpha(1f)
+            ?.setDuration(SPEED)
+            ?.start()
+    }
+
+    private fun hideLayout(layout: MotionLayout?) {
+        layout?.animate()
+            ?.alpha(0f)
+            ?.setDuration(SPEED)
+            ?.withEndAction {
+                layout.visibility = View.GONE
+            }
+            ?.start()
+    }
+
+    companion object {
+        const val SPEED = 150L
+    }
+
+}
