@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backGroundLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_corner_white_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/backgroundOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/margin_16"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:background="@android:color/transparent"
+            app:contentInsetStart="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_16"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_back_button"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/screenTitle"
+                    style="@style/Headline.H4.Medium.Black"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:text="@string/select_a_card" />
+
+                <ImageView
+                    android:id="@+id/support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:src="@drawable/headphones" />
+
+                <ImageView
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_16"
+                    android:src="@drawable/close_image" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/allTariffsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/bestCardTitle"
+                    style="@style/Headline.H5.Medium.Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:text="@string/issue_card_first_sub"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </TextView>
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/ultimaLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    app:layoutDescription="@xml/ultima_card_transition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bestCardTitle">
+
+                    <ImageView
+                        android:id="@+id/ultimaTariff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_ultima_tariff"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/ultimaTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/issue_card_ultima"
+                        app:layout_constraintStart_toEndOf="@id/ultimaTariff" />
+
+                    <TextView
+                        android:id="@+id/ultimaSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/issue_card_any_purchases"
+                        app:layout_constraintEnd_toStartOf="@+id/ultimaButtonForward"
+                        app:layout_constraintStart_toEndOf="@id/ultimaTariff"
+                        app:layout_constraintTop_toBottomOf="@id/ultimaTitle" />
+
+                    <ImageView
+                        android:id="@+id/ultimaButtonForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_button_forward"
+                        app:layout_constraintBottom_toBottomOf="@id/ultimaTariff"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/ultimaTariff" />
+
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <TextView
+                    android:id="@+id/advCardsTitle"
+                    style="@style/Headline.H5.Medium.Black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/issue_card_second_sub"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ultimaLayout">
+
+                </TextView>
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/advLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    app:layoutDescription="@xml/adv_card_transition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/advCardsTitle">
+
+                    <ImageView
+                        android:id="@+id/advTariff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_adv_tariff"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/advTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/issue_card_adv"
+                        app:layout_constraintStart_toEndOf="@id/advTariff" />
+
+                    <TextView
+                        android:id="@+id/advSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/issue_card_for_adv"
+                        app:layout_constraintEnd_toStartOf="@id/advButtonForward"
+                        app:layout_constraintStart_toEndOf="@id/advTariff"
+                        app:layout_constraintTop_toBottomOf="@id/advTitle" />
+
+                    <ImageView
+                        android:id="@+id/advButtonForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_button_forward"
+                        app:layout_constraintBottom_toBottomOf="@id/advTariff"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/advTariff" />
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/facebookLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    app:layoutDescription="@xml/facebook_card_transition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/advLayout">
+
+                    <ImageView
+                        android:id="@+id/facebookTariff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_facebook_tariff"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/facebookTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/issue_card_facebook"
+                        app:layout_constraintStart_toEndOf="@id/facebookTariff" />
+
+                    <TextView
+                        android:id="@+id/facebookSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/issue_card_for_facebook"
+                        app:layout_constraintEnd_toStartOf="@id/facebookButtonForward"
+                        app:layout_constraintStart_toEndOf="@id/facebookTariff"
+                        app:layout_constraintTop_toBottomOf="@id/facebookTitle" />
+
+                    <ImageView
+                        android:id="@+id/facebookButtonForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_button_forward"
+                        app:layout_constraintBottom_toBottomOf="@id/facebookTariff"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/facebookTariff" />
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/googleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    app:layoutDescription="@xml/google_card_transition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/facebookLayout">
+
+                    <ImageView
+                        android:id="@+id/googleTariff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_google_tariff"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/googleTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/issue_card_google"
+                        app:layout_constraintStart_toEndOf="@id/googleTariff" />
+
+                    <TextView
+                        android:id="@+id/googleSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/issue_card_for_google"
+                        app:layout_constraintEnd_toStartOf="@id/googleButtonForward"
+                        app:layout_constraintStart_toEndOf="@id/googleTariff"
+                        app:layout_constraintTop_toBottomOf="@id/googleTitle" />
+
+                    <ImageView
+                        android:id="@+id/googleButtonForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_button_forward"
+                        app:layout_constraintBottom_toBottomOf="@id/googleTariff"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/googleTariff" />
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <androidx.constraintlayout.motion.widget.MotionLayout
+                    android:id="@+id/tiktokLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_16"
+                    app:layoutDescription="@xml/tiktok_card_transition"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/googleLayout">
+
+                    <ImageView
+                        android:id="@+id/tiktokTariff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tiktok_tariff"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tiktokTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/issue_card_tiktok"
+                        app:layout_constraintStart_toEndOf="@id/tiktokTariff" />
+
+                    <TextView
+                        android:id="@+id/tiktokSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/issue_card_for_tiktok"
+                        app:layout_constraintEnd_toStartOf="@id/tiktokButtonForward"
+                        app:layout_constraintStart_toEndOf="@id/tiktokTariff"
+                        app:layout_constraintTop_toBottomOf="@id/tiktokTitle" />
+
+                    <ImageView
+                        android:id="@+id/tiktokButtonForward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_button_forward"
+                        app:layout_constraintBottom_toBottomOf="@id/tiktokTariff"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tiktokTariff" />
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <LinearLayout
+                    android:id="@+id/bigLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginTop="@dimen/margin_18"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tiktokLayout">
+
+                    <TextView
+                        android:id="@+id/bigTitle"
+                        style="@style/Headline.H3.Medium.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Ultima card" />
+
+                    <TextView
+                        android:id="@+id/bigSubTitle"
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        tools:text="for adv purchase" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/subscriptionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_grayed_bg"
+                    android:padding="2dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/bigLayout">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/withoutSubscription"
+                            style="@style/Body.B3.Medium.Black"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/rounded_corner15_white_bg"
+                            android:gravity="center"
+                            android:text="Without subscription" />
+
+                        <LinearLayout
+                            android:id="@+id/privateIcon"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/margin_8"
+                                android:src="@drawable/ic_crown">
+
+                            </ImageView>
+
+                            <TextView
+                                style="@style/Body.B3.Medium.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Private">
+
+                            </TextView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/detailsLayoutTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:paddingHorizontal="@dimen/padding_16"
+                    android:visibility="gone"
+                    android:weightSum="1"
+                    app:layout_constraintTop_toBottomOf="@id/subscriptionLayout">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            android:id="@+id/feeTransaction"
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_transaction_commission" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            android:id="@+id/monthlyPayment"
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_monthly_payment" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/detailsLayoutBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/margin_8"
+                    android:paddingHorizontal="@dimen/padding_16"
+                    android:visibility="gone"
+                    android:weightSum="1"
+                    app:layout_constraintTop_toBottomOf="@id/detailsLayoutTop">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            android:id="@+id/feeTopUp"
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_top_up_commission" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            android:id="@+id/cashback"
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_cashback" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/detailsLayoutTopActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:paddingHorizontal="@dimen/padding_16"
+                    android:visibility="gone"
+                    android:weightSum="1"
+                    app:layout_constraintTop_toBottomOf="@id/detailsLayoutBottom">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/feeTransactionActive"
+                                style="@style/Headline.H3.Medium.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="110$" />
+
+                            <TextView
+                                android:id="@+id/feeTransactionActiveCrossed"
+                                style="@style/Body.B1.Medium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/margin_8" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_transaction_commission" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/monthlyPaymentActive"
+                                style="@style/Headline.H3.Medium.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="110$" />
+
+                            <TextView
+                                android:id="@+id/monthlyPaymentActiveCrossed"
+                                style="@style/Body.B1.Medium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/margin_8" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_monthly_payment" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/detailsLayoutBottomActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/margin_8"
+                    android:paddingHorizontal="@dimen/padding_16"
+                    android:visibility="gone"
+                    android:weightSum="1"
+                    app:layout_constraintTop_toBottomOf="@id/detailsLayoutTopActive">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/feeTopUpActive"
+                                style="@style/Headline.H3.Medium.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="110$" />
+
+                            <TextView
+                                android:id="@+id/feeTopUpActiveCrossed"
+                                style="@style/Body.B1.Medium.Grey"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/margin_8" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_top_up_commission" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_4"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/cashbackActive"
+                                style="@style/Headline.H3.Medium.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="110$" />
+
+                            <TextView
+                                android:id="@+id/cashbackActiveCrossed"
+                                style="@style/Body.B1.Medium.Grey"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/margin_8" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_cashback" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ultimaDetailsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/padding_16"
+                    android:visibility="gone"
+                    android:weightSum="1"
+                    app:layout_constraintTop_toBottomOf="@id/detailsLayoutBottomActive">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_4"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            android:id="@+id/ultimaFeeTransaction"
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_transaction_commission" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_8"
+                        android:background="@drawable/rounded_corner_gray_bg"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_16">
+
+                        <TextView
+                            style="@style/Headline.H3.Medium.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/issue_card_auto_3d_secure" />
+
+                        <TextView
+                            style="@style/Body.B3.Regular.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8"
+                            android:text="@string/issue_card_3d_secure_sub" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardsBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_gray_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_16"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/detailsLayoutBottomActive">
+
+                    <TextView
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/issue_card_card_packs" />
+
+                    <TextView
+                        style="@style/Headline.H4.Bold.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_16"
+                        android:text="@string/issue_card_card_packs_title" />
+
+                    <TextView
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/issue_card_card_packs_subtitle" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cashbackBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_gray_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_16"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/cardsBlock">
+
+                    <TextView
+                        android:id="@+id/cashBackBlockTitle"
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Cashback 3%" />
+
+                    <TextView
+                        style="@style/Headline.H4.Bold.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_16"
+                        android:text="@string/issue_card_cashback_block_title" />
+
+                    <TextView
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/issue_card_cashback_block_subtitle" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/specialConditionsBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_gray_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_16"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/cashbackBlock">
+
+                    <TextView
+                        style="@style/Body.B2.Medium.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/issue_card_special_conditions" />
+
+                    <TextView
+                        style="@style/Headline.H4.Bold.Black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/margin_16"
+                        android:text="@string/issue_card_special_conditions_title" />
+
+                    <TextView
+                        style="@style/Body.B3.Regular.Grey"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/issue_card_special_conditions_subtitle" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/continueButton"
+                    style="@style/Body.B3.Medium.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_black_bg"
+                    android:text="@string/continueTextButton"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:backgroundTint="@null"
+                    app:iconGravity="textStart"
+                    app:iconTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ultimaDetailsLayout" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/connectButton"
+                    style="@style/Body.B3.Medium.White"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_16"
+                    android:layout_marginVertical="@dimen/margin_24"
+                    android:background="@drawable/rounded_corner_black_bg"
+                    android:text="@string/issue_card_connect_private"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:backgroundTint="@null"
+                    app:iconGravity="textStart"
+                    app:iconTint="@null"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/specialConditionsBlock" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
